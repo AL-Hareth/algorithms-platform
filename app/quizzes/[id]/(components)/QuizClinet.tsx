@@ -1,6 +1,7 @@
 "use client";
 import { MouseEvent, useState } from "react";
 import type { Question } from "../page";
+import Image from "next/image";
 
 export default function QuizClient({ questions }: { questions: Question[] }) {
     const [userAnswers, setUserAnswers] = useState<{ questionId: string; answer: string }[]>([]);
@@ -25,6 +26,17 @@ export default function QuizClient({ questions }: { questions: Question[] }) {
             {questions.map((question: Question) => (
                 <div key={question.id} className="bg-black text-white p-4 items-center rounded-md border-green-700 border-t-4 w-full">
                     <h1 className="text-2xl font-bold">{question.questionText}</h1>
+                    <div className="flex justify-center">
+                        {question.questionImage && (
+                            <Image
+                                width={500}
+                                height={500}
+                                src={question.questionImage}
+                                alt={question.questionText}
+                                className="w-fit h-fit my-2"
+                            />
+                        )}
+                    </div>
                     {question.questionType === "mcq" && (
                         <div>
                             {Object.entries(question.options).map(([optionKey, optionValue]) => (

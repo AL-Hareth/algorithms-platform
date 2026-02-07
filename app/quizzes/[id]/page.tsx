@@ -5,6 +5,7 @@ export type Question = {
     id: string;
     questionText: string;
     questionType: "mcq" | "shortAnswer" | "trueFalse";
+    questionImage?: string;
     options: Record<string, string>;
     correctAnswer: string;
     quizId: string;
